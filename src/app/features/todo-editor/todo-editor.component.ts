@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject, EventEmitter } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BehaviorSubject } from "rxjs";
 import { Todo } from "src/app/core/todo.model";
@@ -38,13 +38,17 @@ export default class TodoEditorComponent {
         this.todoService.addTodo(this.inputValue)
             .subscribe(res => {
                 this.testEmitter$.next([...this.todos, res]);    
+                this.inputValue = '';
+                console.log("add", res);
                 this.getTodos();
-                return res;
             })
     }
 
     deleteTodo(id: string) {
         this.todoService.deleteTodo(id)
-            .subscribe(res => res)
+            .subscribe((res) => {
+                console.log("deleted", res);
+                this.getTodos();
+            })
     }
 }

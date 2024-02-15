@@ -2,7 +2,7 @@
                 <div class="flex items-center ps-3">
                     <input type="checkbox" value="" class="w-4 h-4 bg-gray-100 border-gray-300">
                     <label class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ todo.getValue()[index].title }}</label>
-                    <button type="button" class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white rounded-lg">
+                    <button type="button" class="px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white rounded-lg" (click)="onDelete.next(todo.getValue()[index].id)">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                             <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M8 8v1h4V8m4 7H4a1 1 0 0 1-1-1V5h14v9a1 1 0 0 1-1 1ZM2 1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/>                      
                         </svg>

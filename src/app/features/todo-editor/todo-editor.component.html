@@ -6,7 +6,7 @@
         <input type="text" (keydown.enter)="addTodo()" [(ngModel)]="inputValue" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" placeholder="Add to your list">
         <ul class="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             <li *ngFor="let todo of testEmitter$ | async; let i = index" class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
-                <todo-list [todo]="testEmitter$" [index]="i" (onDelete)="deleteTodo(todo.id)"></todo-list>
+                <todo-list [todo]="testEmitter$" [index]="i" (onDelete)="deleteTodo(testEmitter$.getValue()[i].id)"></todo-list>
             </li>
         </ul>
     </div>
