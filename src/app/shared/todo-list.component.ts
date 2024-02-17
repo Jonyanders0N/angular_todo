@@ -21,4 +21,8 @@ export class TodoListComponent {
         this.todo.subscribe((value: Todo[]) => value);
     }
 
+    checkBoxValue(event: any) {
+        console.log(event.checked);
+    }
+
 }
