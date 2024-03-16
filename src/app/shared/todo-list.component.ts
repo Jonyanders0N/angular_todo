@@ -19,7 +19,7 @@ export class TodoListComponent implements OnChanges {
     
     ngOnChanges(): void {
         // console.log("ngOnInit");
-        this.todo.subscribe((value: Todo[]) => console.log(value));
+        this.todo.subscribe((value: Todo[]) => value);
     }
 
     checkBoxValue(event: any) {
