@@ -3,8 +3,8 @@
         <h1 class="my-4 text-center text-4xl font-bold">Today's To Do</h1>
     </div>
     <div class="col-start-2 col-span-4">
-        <input type="text" (keydown.enter)="addTodo()" [(ngModel)]="inputValue" style="border-left: none; border-right: none;" class="bg-sky-100 border border-gray-300 text-stone-800 text-sm block w-full p-2.5 dark:bg-sky-100 dark:border-gray-300 dark:placeholder-gray-400 dark:text-white" placeholder="Add to your list">
-        <ul class="w-full text-sm font-medium text-stone-800 bg-sky-100 border dark:bg-sky-100 dark:text-white">
+        <input type="text" (keydown.enter)="addTodo()" [(ngModel)]="inputValue" style="border-left: none; border-right: none;" class="bg-sky-100 border border-gray-300 text-stone-800 text-sm block w-full p-2.5 dark:bg-sky-100 dark:border-gray-300 dark:placeholder-gray-400 dark:text-gray-500" placeholder="Add to your list">
+        <ul class="w-full border-b-0 border-t-0 text-sm font-medium text-stone-800 bg-sky-100 border dark:bg-sky-100 dark:text-white">
             <li *ngFor="let todo of testEmitter$ | async; let i = index" class="w-full border-b border-gray-300 rounded-t-lg dark:border-gray-300">
                 <todo-list [todo]="testEmitter$" [index]="i" (onDelete)="deleteTodo(testEmitter$.getValue()[i].id)"></todo-list>
             </li>

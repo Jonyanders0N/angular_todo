@@ -1,4 +1,5 @@
 {
     "scss.lint.unknownAtRules": "ignore",
-    "css.customData": [".vscode/css_custom_data.json"]
+    "css.customData": [".vscode/css_custom_data.json"],
+    "explorer.compactFolders": false
 }

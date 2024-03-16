@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from "@angular/core";
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BehaviorSubject } from "rxjs";
 import { Todo } from "../core/todo.model";
@@ -12,12 +12,13 @@ import { Todo } from "../core/todo.model";
     imports: [FormsModule, CommonModule]
 })
 
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
     @Input() todo!: BehaviorSubject<Todo[]>;
     @Input() index!: number;
     @Output() onDelete = new EventEmitter();
     
     ngOnInit(): void {
+        // console.log("ngOnInit");
         this.todo.subscribe((value: Todo[]) => value);
     }
 

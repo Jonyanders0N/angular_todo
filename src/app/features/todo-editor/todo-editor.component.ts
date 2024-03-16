@@ -37,10 +37,10 @@ export default class TodoEditorComponent {
     addTodo(){
         this.todoService.addTodo(this.inputValue)
             .subscribe(res => {
-                this.testEmitter$.next([...this.todos, res]);    
+                this.testEmitter$.next([...this.todos, res]); // update the view without calling again the json-server   
                 this.inputValue = '';
                 console.log("add", res);
-                this.getTodos();
+                // this.getTodos();
             })
     }
 
@@ -48,7 +48,9 @@ export default class TodoEditorComponent {
         this.todoService.deleteTodo(id)
             .subscribe((res) => {
                 console.log("deleted", res);
-                this.getTodos();
+                this.todos.splice(this.todos.findIndex(todo => todo.id === id), 1); // update the view without calling again the json-server
+                this.testEmitter$.next([...this.todos]);
+                // this.getTodos();
             })
     }
 }
