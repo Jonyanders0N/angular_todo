@@ -12,14 +12,14 @@ import { Todo } from "../core/todo.model";
     imports: [FormsModule, CommonModule]
 })
 
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnChanges {
     @Input() todo!: BehaviorSubject<Todo[]>;
     @Input() index!: number;
     @Output() onDelete = new EventEmitter();
     
-    ngOnInit(): void {
+    ngOnChanges(): void {
         // console.log("ngOnInit");
-        this.todo.subscribe((value: Todo[]) => value);
+        this.todo.subscribe((value: Todo[]) => console.log(value));
     }
 
     checkBoxValue(event: any) {

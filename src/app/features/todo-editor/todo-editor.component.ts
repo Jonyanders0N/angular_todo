@@ -37,7 +37,8 @@ export default class TodoEditorComponent {
     addTodo(){
         this.todoService.addTodo(this.inputValue)
             .subscribe(res => {
-                this.testEmitter$.next([...this.todos, res]); // update the view without calling again the json-server   
+                this.todos.push(res);
+                this.testEmitter$.next([...this.todos]); // update the view without calling again the json-server   
                 this.inputValue = '';
                 console.log("add", res);
                 // this.getTodos();
