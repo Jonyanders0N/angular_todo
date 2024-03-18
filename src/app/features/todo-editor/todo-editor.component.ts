@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, EventEmitter } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, forkJoin } from "rxjs";
 import { Todo } from "src/app/core/todo.model";
 import { TodoService } from "src/app/core/todo.service";
 import { TodoListComponent } from "src/app/shared/todo-list.component";
@@ -55,5 +55,24 @@ export default class TodoEditorComponent {
                 this.testEmitter$.next([...this.todos]);
                 // this.getTodos();
             })
+    }
+
+    changeCheckboxFlag(event: any) {
+        console.log(event);
+        this.todos[event.index].done = event.valueCheck;
+        this.testEmitter$.next([...this.todos]);
+        console.log(this.todos);
+    }
+
+    deleteAllTodo(){
+        const deleteTodos = this.todos.filter(todo => todo.done === true);
+
+        forkJoin(deleteTodos.map((todo => this.todoService.deleteTodo(todo.id))))
+            .subscribe(res => {
+                console.log("deletedAll", res);
+                // update the view without calling again the json-server
+                deleteTodos.forEach(delTodo => this.todos.splice(this.todos.findIndex(todo => todo.id === delTodo.id), 1)); 
+                this.testEmitter$.next([...this.todos]);
+            });
     }
 }

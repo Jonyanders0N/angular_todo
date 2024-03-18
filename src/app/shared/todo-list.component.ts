@@ -16,14 +16,15 @@ export class TodoListComponent implements OnChanges {
     @Input() todo!: BehaviorSubject<Todo[]>;
     @Input() index!: number;
     @Output() onDelete = new EventEmitter();
+    @Output() checkBoxFlag = new EventEmitter();
     
     ngOnChanges(): void {
-        // console.log("ngOnInit");
         this.todo.subscribe((value: Todo[]) => value);
     }
 
-    checkBoxValue(event: any) {
-        console.log(event.checked);
+    checkBoxValue(event: any, index: any) {
+        // console.log(event.checked, index);
+        this.checkBoxFlag.emit({valueCheck: event.checked, index: index})
     }
 
 }
